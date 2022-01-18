@@ -856,8 +856,9 @@ mob/living/carbon/human/verb/stopSliding()
 
 	if(!real_name)
 		real_name = name
-		dna_trace = sha1(real_name)
-		fingers_trace = md5(real_name)
+
+	dna_trace = sha1(real_name)
+	fingers_trace = md5(real_name)
 
 	//Some mobs may need to create their stats datum farther up
 	if(!stats)
