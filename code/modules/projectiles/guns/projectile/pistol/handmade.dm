@@ -15,7 +15,7 @@
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.36
 	style_damage_multiplier = 2
-	recoil_buildup = 15
+	recoil = HANDGUN_RECOIL
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
