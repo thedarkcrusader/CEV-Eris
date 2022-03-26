@@ -27,6 +27,7 @@
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
 	twohanded = TRUE
 	var/consume_cell = TRUE
+	recoil = RIFLE_RECOIL
 
 	serial_type = "OR"
 

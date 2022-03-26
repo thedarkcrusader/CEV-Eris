@@ -18,6 +18,7 @@
 	gun_parts = list(/obj/item/stack/material/steel = 4)
 	serial_type = "M"
 
+	recoil = HANDGUN_RECOIL
 
 /obj/item/gun/energy/temperature/Initialize()
 	. = ..()

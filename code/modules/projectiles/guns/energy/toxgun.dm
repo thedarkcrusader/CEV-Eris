@@ -12,3 +12,4 @@
 	projectile_type = /obj/item/projectile/energy/plasma
 	serial_type = "M"
 
+	recoil = HANDGUN_RECOIL

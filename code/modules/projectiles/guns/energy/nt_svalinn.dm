@@ -24,4 +24,5 @@
 	suitable_cell = /obj/item/cell/small
 	cell_type = /obj/item/cell/small
 	serial_type = "NT"
+	recoil = HANDGUN_RECOIL
 
