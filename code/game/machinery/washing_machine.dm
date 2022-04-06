@@ -22,6 +22,16 @@
 	//3 = full, open door
 	//4 = full, closed door
 	//5 = running
+	//6 = blood, open door
+	//7 = blood, closed door
+	//8 = blood, running
+	var/panel = 0
+	//0 = closed
+	//1 = open
+	hacked = 1 //Bleh, screw hacking, let's have it hacked by default.
+	//0 = not hacked
+	//1 = hacked
+	var/gibs_ready = 0
 	var/obj/crayon
 
 	var/tick = 0
