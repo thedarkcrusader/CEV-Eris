@@ -12,7 +12,7 @@
 	wield_delay = 0.3 SECOND
 	wield_delay_factor = 0.2 // 20 vig
 	serial_type = "NT"
-	recoil = HANDGUN_RECOIL
+	recoil = HANDGUN_RECOIL(1)
 
 /obj/item/gun/energy/taser/mounted
 	name = "mounted taser gun"
@@ -42,7 +42,7 @@
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/energy/electrode
 	serial_type = "NT"
-	recoil = HANDGUN_RECOIL
+	recoil = HANDGUN_RECOIL(1)
 
 /obj/item/gun/energy/stunrevolver/moebius
 	name = "Moebius SP \"Suez\""	//Ersatz name

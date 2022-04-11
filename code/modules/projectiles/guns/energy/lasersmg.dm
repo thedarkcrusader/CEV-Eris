@@ -32,7 +32,7 @@
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.1 // 10 vig
 	serial_type = "" // self made
-	recoil = SMG_RECOIL
+	recoil = SMG_RECOIL(1)
 
 
 /obj/item/gun/energy/lasersmg/process_projectile(var/obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params)

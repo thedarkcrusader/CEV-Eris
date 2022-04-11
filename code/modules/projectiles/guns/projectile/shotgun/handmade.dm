@@ -16,7 +16,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	style_damage_multiplier = 2
 	damage_multiplier = 0.7
-	recoil = CARBINE_RECOIL
+	recoil = CARBINE_RECOIL(4.5)
 	price_tag = 250 //cheap as they get
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE

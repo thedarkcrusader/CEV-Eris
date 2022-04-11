@@ -12,4 +12,4 @@
 	fire_delay = 1
 	twohanded = TRUE
 	serial_type = "PAR"
-	recoil = RIFLE_RECOIL
+	recoil = RIFLE_RECOIL(1)

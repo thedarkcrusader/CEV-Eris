@@ -26,4 +26,4 @@
 	wield_delay = 0
 	serial_type = "NT"
 
-	recoil = RIFLE_RECOIL
+	recoil = RIFLE_RECOIL(1)

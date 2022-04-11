@@ -21,7 +21,7 @@
 		)
 
 	serial_type = "M"
-	recoil = HANDGUN_RECOIL
+	recoil = HANDGUN_RECOIL(1)
 	var/lightfail = 0
 
 
