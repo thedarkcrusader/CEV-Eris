@@ -38,4 +38,3 @@
 	projectile_type = /obj/item/projectile/energy/bolt/large
 	price_tag = 4000
 	recoil = RIFLE_RECOIL(1)
-	
