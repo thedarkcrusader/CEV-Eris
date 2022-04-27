@@ -14,12 +14,8 @@
 	gun_parts = list(/obj/item/stack/material/steel = 2)
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.36
-<<<<<<< HEAD
 	style_damage_multiplier = 2
-	recoil = HANDGUN_RECOIL
-=======
 	recoil = HANDGUN_RECOIL(2.5)
->>>>>>> Restores old values for ballistics
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
