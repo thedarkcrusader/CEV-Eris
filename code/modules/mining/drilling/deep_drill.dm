@@ -25,16 +25,16 @@
 	var/last_use = 0.0
 
 	var/ore_types = list(
-		MATERIAL_IRON = /obj/item/ore/iron,
+		MATERIAL_DIAMOND = /obj/item/ore/diamond,
 		MATERIAL_URANIUM = /obj/item/ore/uranium,
 		MATERIAL_GOLD = /obj/item/ore/gold,
 		MATERIAL_SILVER = /obj/item/ore/silver,
-		MATERIAL_DIAMOND = /obj/item/ore/diamond,
 		MATERIAL_PLASMA = /obj/item/ore/plasma,
 		MATERIAL_OSMIUM = /obj/item/ore/osmium,
 		MATERIAL_TRITIUM = /obj/item/ore/hydrogen,
 		MATERIAL_GLASS = /obj/item/ore/glass,
-		MATERIAL_PLASTIC = /obj/item/ore/coal
+		MATERIAL_PLASTIC = /obj/item/ore/coal,
+		MATERIAL_IRON = /obj/item/ore/iron,
 		)
 
 	//Upgrades
