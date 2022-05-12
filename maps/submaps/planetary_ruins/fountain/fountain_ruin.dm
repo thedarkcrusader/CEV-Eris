@@ -14,7 +14,7 @@
 	icon_state = "fountain-blue"
 	anchored = TRUE
 	density = TRUE
-	var/time_between_uses = 1800
+	var/time_between_uses = 5 SECONDS
 	var/last_process = 0
 
 /obj/structure/healingfountain/update_icon()  // update_icon() but as a proc to be able to do a callback
