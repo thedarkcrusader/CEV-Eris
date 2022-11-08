@@ -25,23 +25,39 @@
 //COMBAT
 /datum/design/research/item/exosuit/taser
 	name = "mounted taser"
-	build_path = /obj/item/mech_equipment/mounted_system/taser
+	build_path = /obj/item/mech_equipment/mounted_system/energy/taser
 
 /datum/design/research/item/exosuit/weapon/plasma
 	name = "mounted plasma cutter"
-	build_path = /obj/item/mech_equipment/mounted_system/taser/plasma
+	build_path = /obj/item/mech_equipment/mounted_system/energy/plasma
 
 /datum/design/research/item/exosuit/weapon/ion
 	name = "mounted ion rifle"
-	build_path = /obj/item/mech_equipment/mounted_system/taser/ion
+	build_path = /obj/item/mech_equipment/mounted_system/energy/ion
 
 /datum/design/research/item/exosuit/weapon/laser
 	name = "mounted laser gun"
-	build_path = /obj/item/mech_equipment/mounted_system/taser/laser
+	build_path = /obj/item/mech_equipment/mounted_system/energy/laser
 
 /datum/design/research/item/exosuit/weapon/pk
 	name = "mounted rigged PK"
 	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
+
+/datum/design/research/item/exosuit/weapon/cannon
+	name = "mounted cannon"
+	build_path = /obj/item/mech_equipment/mounted_system/energy/cannon
+
+/datum/design/research/item/exosuit/weapon/missile
+	name = "missile rack"
+	build_path = /obj/item/mech_equipment/mounted_system/launcher/missile
+
+/datum/design/research/item/exosuit/weapon/frag
+	name = "fragmentation launcher"
+	build_path = /obj/item/mech_equipment/mounted_system/launcher/grenadefrag
+
+/datum/design/research/item/exosuit/weapon/stingball
+	name = "stingball launcher"
+	build_path = /obj/item/mech_equipment/mounted_system/launcher/grenadesting
 
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
