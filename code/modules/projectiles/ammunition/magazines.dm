@@ -418,14 +418,6 @@
 	ammo_type = /obj/item/ammo_casing/lrifle/scrap
 	spawn_tags = SPAWN_AMMO_COMMON
 
-//Magazine type for the mech PK, you shouldn't see this
-
-/obj/item/ammo_magazine/lrifle/pk/mech
-	name = "LMG munitions box (.30 Rifle, Exosuit)"
-	matter = list()
-	spawn_blacklisted = TRUE
-	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
-
 /obj/item/ammo_magazine/lrifle/pk/empty
 	initial_ammo = 0
 
@@ -722,3 +714,17 @@
 
 /obj/item/ammo_magazine/m12/empty
 	initial_ammo = 0
+
+//*Exosuit-Related*//
+//*Magazines*//
+
+/obj/item/ammo_magazine/lrifle/pk/mech
+	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	matter = list()
+	spawn_blacklisted = TRUE
+	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
+
+/obj/item/ammo_magazine/lrifle/pk/empty
+	initial_ammo = 0
+
+//*End of Exosuit-Related*//

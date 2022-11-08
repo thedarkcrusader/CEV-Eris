@@ -256,3 +256,29 @@
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
 
+/////Start of Exosuit Stuff/////
+
+//*Individual Projectiles*//
+
+/obj/item/projectile/bullet/cannon
+	name = "cannon round"
+	icon_state = "cannon"
+	damage_types = list(BRUTE = 85)
+	armor_divisor = 0.75 // Not designed to pierce armor
+	style_damage = 70
+	recoil = 0
+	step_delay = 1.8
+	wounding_mult = 1
+
+/obj/item/projectile/bullet/rocket/mech
+	name = "mass-produced rocket"
+	icon_state = "rocket"
+	damage_types = list(BRUTE = 15)
+	armor_divisor = 1
+	style_damage = 100
+	check_armour = ARMOR_BOMB
+	penetrating = -5
+	recoil = 0
+	can_ricochet = FALSE
+
+/////End of Exosuit Stuff/////
