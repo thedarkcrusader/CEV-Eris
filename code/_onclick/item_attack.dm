@@ -36,7 +36,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if (pre_attack(A, user, params))
 		return 1 //Returning 1 passes an abort signal upstream
 	add_fingerprint(user)
-	if(ishuman(user) && !(user == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun))
+	if(ishuman(user))//monkeys can use items, unfortunately
+		var/mob/living/carbon/human/H = user
+		if(H.blocking)
+			H.stop_blocking()
+	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall))
 		swing_attack(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
@@ -44,7 +48,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 //Returns TRUE if attack is to be carried out, FALSE otherwise.
 /obj/item/proc/double_tact(mob/user)
 	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun))//grabs have colossal w_class. You can't raise something that does not exist.
-		if(!(ready))						//guns have the point blank privilage
+		if(!(ready))						//guns have the point blank privilege
 			user.visible_message(SPAN_DANGER("[user] raises \his [src]!"))
 			ready = TRUE
 			var/obj/effect/effect/melee/alert/A = new()
@@ -72,8 +76,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 
 /obj/item/proc/swing_attack(atom/A, mob/user, params)
-	if(!double_tact(user))
-		return
 	var/holdinghand = user.get_inventory_slot(src)
 	var/turf/R
 	var/turf/C
@@ -201,8 +203,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/surgery_check = can_operate(src, user)
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
-	if(I.double_tact(user))
-		I.attack(src, user, user.targeted_organ)
+	else
+		return I.attack(src, user, user.targeted_organ)
 
 //Area of effect attacks (swinging)
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, modifier = 1)
@@ -220,9 +222,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	var/list/dead_mobs = new/list()
 	for(var/mob/living/M in targetarea)
 		if(M.stat == DEAD)
-			living_mobs.Add(M)
-		else
 			dead_mobs.Add(M)
+		else
+			living_mobs.Add(M)
 	var/target
 	if(living_mobs.len)
 		target = pick(living_mobs)
@@ -239,16 +241,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/afterattack(atom/A as mob|obj|turf|area, mob/user, proximity, params)
 	if((!proximity && !ismob(A)) || !wielded || !extended_reach)//extended reach is only for mobs when you wield the spear
 		return
-<<<<<<< HEAD
-	if(get_dist(user.loc, A.loc) < 3)
-		resolve_attackby(A, user, params)
-=======
 	if(get_dist(user.loc, A.loc) < 3)//okay, we are in reach, now we need to check if there is anything dense in our path
 		var/turf/T = get_step(user.loc, get_dir(user, A))
 		if(T.Enter(user))
 			resolve_attackby(A, user, params)
 	return
->>>>>>> pulls/317103362/7780
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
 /obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)
