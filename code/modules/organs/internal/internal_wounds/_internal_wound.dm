@@ -70,6 +70,10 @@
 	var/obj/item/organ/external/E = O.parent
 	var/mob/living/carbon/human/H = O.owner
 
+	if(O.status & ORGAN_DEAD)
+		SSinternal_wounds.processing -= src
+		return
+
 	// Doesn't need to be inside someone to get worse
 	if(can_progress)
 		++current_progression_tick
@@ -82,12 +86,13 @@
 
 	// Chemical treatment handling
 	var/is_treated = FALSE
-	var/list/owner_ce = H.chem_effects.Copy()
+	var/list/owner_ce = H.chem_effects
 	for(var/chem_effect in owner_ce)
-		var/to_remove = try_treatment(TREATMENT_CHEM, chem_effect, owner_ce[chem_effect])
-		if(to_remove > 0)	// Negative value means not enough, 0 means failed treatment
-			H.chem_effects[chem_effect] -= to_remove
+		var/to_remove = LAZYACCESS(treatments_chem, chem_effect)
+		if(owner_ce[chem_effect] >= to_remove)
+			owner_ce[chem_effect] -= to_remove
 			is_treated = TRUE
+			treatment(FALSE)
 			break
 
 	if(is_treated)
@@ -144,26 +149,23 @@
 	var/success = FALSE
 
 	if(!I.tool_qualities || !LAZYLEN(I.tool_qualities))
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			var/to_remove = try_treatment(TREATMENT_ITEM, S.type, S.amount, TRUE)
-			if(to_remove > 0 && to_remove < S.amount)
-				S.amount -= to_remove
+		var/charges_needed = LAZYACCESS(treatments_item, I.type)
+		var/can_treat = TRUE
+		if(charges_needed)
+			if(istype(I, /obj/item/stack))
+				var/obj/item/stack/S = I
+				if(!S.use(charges_needed))
+					can_treat = FALSE
+			if(can_treat && do_after(user, WORKTIME_NORMAL - user.stats.getStat(diagnosis_stat), parent))
 				success = TRUE
-			else if(user)
-				to_chat(user, SPAN_WARNING("You failed to treat the [name] with \the [I]. Not enough charges."))
-				return
-		else
-			success = try_treatment(TREATMENT_ITEM, I.type, null, TRUE)
 	else
-		for(var/tool_quality in I.tool_qualities)
-			var/quality_and_stat_level = I.tool_qualities[tool_quality] + user.stats.getStat(diagnosis_stat)
-			if(try_treatment(TREATMENT_TOOL, tool_quality, quality_and_stat_level, TRUE))
+		for(var/tool_quality in treatments_tool)
+			if(I.use_tool(user, parent, WORKTIME_NORMAL, tool_quality, treatments_tool[tool_quality], diagnosis_stat))
 				success = TRUE
 				break
-		if(user && !success)
-			to_chat(user, SPAN_WARNING("You failed to treat the [name] with \the [I]. Incorrect tool quality."))
-			return
+
+	if(success)
+		treatment(TRUE)
 
 	if(user)
 		if(success)
@@ -171,24 +173,7 @@
 		else
 			to_chat(user, SPAN_WARNING("You cannot treat the [name] with \the [I]."))
 
-/datum/component/internal_wound/proc/try_treatment(treatment_type, type, magnitude, used_tool = FALSE)
-	var/list/treatments
-
-	switch(treatment_type)
-		if(TREATMENT_ITEM)
-			treatments = treatments_item
-		if(TREATMENT_TOOL)
-			treatments = treatments_tool
-		if(TREATMENT_CHEM)
-			treatments = treatments_chem
-		else
-			return FALSE
-
-	if(treatments.Find(type))
-		if(magnitude >= treatments[type])
-			treatment(used_tool)
-			return treatments[type] ? treatments[type] : TRUE
-	return FALSE
+	return success
 
 /datum/component/internal_wound/proc/treatment(used_tool, used_autodoc = FALSE)
 	if(severity > 0 && !used_tool)
