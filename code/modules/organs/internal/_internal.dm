@@ -94,7 +94,8 @@
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
+	var/wound_threshold = (damage_type == BRUTE || damage_type == BURN) ? 4 : 8
+	var/wound_count = max(0, round((amount * wounding_multiplier) / wound_threshold))
 
 	if(!wound_count)
 		return FALSE
