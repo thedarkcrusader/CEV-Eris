@@ -91677,9 +91677,7 @@
 /obj/item/device/measuring_tape,
 /obj/structure/table/steel,
 /obj/item/stack/flag/yellow,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "13,2"
-	},
+/turf/simulated/wall/r_wall,
 /area/shuttle/research/station)
 "epx" = (
 /turf/simulated/shuttle/wall/science{
